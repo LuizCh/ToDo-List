@@ -1,0 +1,17 @@
+<div>
+  <h2 style="text-align:center">ToDo List</h2>
+  <div class="container">
+    <div class="searchContainter">
+      <input type="checkbox">
+      <div class="inputContainter">
+        <input type="text" #inputTask placeholder="What needs to be done?" [(ngModel)]="inputValue" (keyup.enter)="addTask($event.target.value)" style="width:-webkit-fill-available">
+      </div>
+    </div>
+    <app-task *ngFor="let task of tasks; let id = index" [task]="task" [textValue]="inputValue" (deleteTask)="deleteThisTask(task.id)"></app-task>
+    <div class="buttonContainer">
+      <button>All</button>
+      <button>Active</button>
+      <button>Completed</button>
+    </div>
+  </div>
+</div>

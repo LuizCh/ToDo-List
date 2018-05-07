@@ -1,0 +1,27 @@
+.container {
+	// width: 25rem;
+	border: 1px solid #c8c8c8;
+	width: 50%;
+	margin: 0 auto;
+}
+
+.searchContainter {
+	border-bottom: 1px solid #c8c8c8;
+	display: flex;
+}
+
+.inputContainter {
+	width: 80%;
+}
+
+input {
+	border: none;
+	padding: 2%;
+	height: auto;
+	font-size: large;
+}
+
+.buttonContainer {
+	text-align: center;
+	padding: 2%;
+}
