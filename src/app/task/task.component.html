@@ -1,1 +1,5 @@
-<div><input type="checkbox">{{task.taskText}}<button (click)="onDeleteTask($event)">X</button></div>
+<!-- activa: 0, completada: 1, todos: 2   *ngIf="task.status = 0"-->
+<div appHideDelete>
+  <input type="checkbox" (change)="onCompleteTask($event)">{{task.taskText}}
+  <button (click)="onDeleteTask($event)" hidden>X</button>
+</div>

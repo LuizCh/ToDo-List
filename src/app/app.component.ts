@@ -18,22 +18,35 @@ export class AppComponent {
 	constructor(private http: HttpClient) {
 		this.http.get<any>(this.url).subscribe((data) => {
 			data.forEach((data) => {
-				const theTask = new task(uuid(), data, '0');
+				const theTask = new task(uuid(), data, '1');
 				this.tasks.push(theTask);
 			});
 		});
 	}
 
 	addTask(inputText: string) {
-		const theTask = new task(uuid(), inputText, '0');
-		this.tasks.push(theTask);
-		this.inputValue = '';
-		console.log(this.tasks);
+		if (inputText !== '') {
+			const theTask = new task(uuid(), inputText, '0');
+			this.tasks.push(theTask);
+			this.inputValue = '';
+			console.log(this.tasks);
+		}
 	}
 
 	deleteThisTask(taskId: string) {
 		// this.tasks.splice(this.tasks[taskId], 1);
 		this.tasks = this.tasks.filter((theTask) => theTask.id !== taskId);
+	}
+
+	completeThisTask(taskId: string) {
+		this.tasks.forEach((data) => {
+			if (data.id === taskId) {
+				data.state = !data.state;
+			}
+		});
+		// const aTask: any = this.tasks.filter((theTask) => theTask.id !== taskId);
+		// aTask.state = !aTask.state;
+		console.log(this.tasks);
 	}
 }
 

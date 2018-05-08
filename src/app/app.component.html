@@ -4,14 +4,20 @@
     <div class="searchContainter">
       <input type="checkbox">
       <div class="inputContainter">
-        <input type="text" #inputTask placeholder="What needs to be done?" [(ngModel)]="inputValue" (keyup.enter)="addTask($event.target.value)" style="width:-webkit-fill-available">
+        <input type="text" #inputTask placeholder="What needs to be done?" 
+        [(ngModel)]="inputValue" (keyup.enter)="addTask($event.target.value)" 
+        style="width:-webkit-fill-available">
       </div>
     </div>
-    <app-task *ngFor="let task of tasks; let id = index" [task]="task" [textValue]="inputValue" (deleteTask)="deleteThisTask(task.id)"></app-task>
-    <div class="buttonContainer">
-      <button>All</button>
-      <button>Active</button>
-      <button>Completed</button>
+    <!-- | taskFilter : '1' -->
+    <app-task *ngFor="let task of tasks; let id = index" [task]="task" 
+    [textValue]="inputValue" (deleteTask)="deleteThisTask(task.id)" (completeTask)="completeThisTask(task.id)"></app-task>
+    <div class="buttonContainer" *ngIf="tasks?.length > 0">
+      <p class="itemsLeft">{{tasks.length}} items left</p>
+      <button class="filterButtons" appHighlightButtons>All</button>
+      <button class="filterButtons" appHighlightButtons>Active</button>
+      <button class="filterButtons" appHighlightButtons>Completed</button>
+      <button class="clearCompletedButton">Clear completed</button>
     </div>
   </div>
 </div>
